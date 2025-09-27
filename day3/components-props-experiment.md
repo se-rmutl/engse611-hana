@@ -102,7 +102,7 @@ export const sampleProducts = [
     name: 'iPhone 15 Pro',
     price: 45900,
     originalPrice: 49900,
-    image: 'https://via.placeholder.com/250x200/007bff/ffffff?text=iPhone+15',
+    image: 'https://placehold.co/250x200/007bff/ffffff?text=iPhone+15',
     description: 'สมาร์ทโฟนล่าสุดจาก Apple พร้อมชิป A17 Pro',
     inStock: true,
     category: 'electronics'
@@ -112,7 +112,7 @@ export const sampleProducts = [
     name: 'MacBook Air M2',
     price: 39900,
     originalPrice: 42900,
-    image: 'https://via.placeholder.com/250x200/28a745/ffffff?text=MacBook+Air',
+    image: 'https://placehold.co/250x200/28a745/ffffff?text=MacBook+Air',
     description: 'โน้ตบุ๊คที่บางเบาและทรงพลัง',
     inStock: true,
     category: 'electronics'
@@ -122,7 +122,7 @@ export const sampleProducts = [
     name: 'เสื้อยืดผ้าฝ้าย',
     price: 299,
     originalPrice: 399,
-    image: 'https://via.placeholder.com/250x200/ffc107/000000?text=T-Shirt',
+    image: 'https://placehold.co/250x200/ffc107/000000?text=T-Shirt',
     description: 'เสื้อยืดผ้าฝ้าย 100% นุ่มสบาย',
     inStock: false,
     category: 'clothing'
@@ -132,7 +132,7 @@ export const sampleProducts = [
     name: 'หนังสือ React.js',
     price: 650,
     originalPrice: 750,
-    image: 'https://via.placeholder.com/250x200/17a2b8/ffffff?text=React+Book',
+    image: 'https://placehold.co/250x200/17a2b8/ffffff?text=React+Book',
     description: 'คู่มือเรียนรู้ React.js ฉบับสมบูรณ์',
     inStock: true,
     category: 'books'
@@ -244,7 +244,7 @@ function ProductCard({
                     alt={name} 
                     className="product-image"
                     onError={(e) => {
-                        e.target.src = 'https://via.placeholder.com/250x200/cccccc/666666?text=No+Image';
+                        e.target.src = 'https://placehold.co/250x200/cccccc/666666?text=No+Image';
                     }}
                 />
                 {showDiscount && discount > 0 && (
@@ -1852,7 +1852,7 @@ function App() {
                         age={28} 
                         role="Project Manager" 
                         isVIP={false}
-                        avatar="https://via.placeholder.com/60x60/28a745/ffffff?text=SM"
+                        avatar="https://placehold.co/60x60/28a745/ffffff?text=SM"
                     />
                 </div>
                 

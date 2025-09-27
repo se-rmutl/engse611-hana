@@ -266,7 +266,7 @@ function WelcomeMessage({
     name = "ผู้เยี่ยมชม", 
     age = 18, 
     city = "ไม่ระบุ",
-    avatar = "https://via.placeholder.com/100",
+    avatar = "https://placehold.co/100",
     isVIP = false 
 }) {
     return (

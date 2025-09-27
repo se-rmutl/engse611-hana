@@ -734,7 +734,7 @@ function PersonalProfile() {
         year: 3,
         hobbies: ["เขียนโค้ด", "เล่นเกม", "ดูหนัง"],
         skills: ["JavaScript", "React", "HTML/CSS"],
-        avatar: "https://via.placeholder.com/150"
+        avatar: "https://placehold.co/150"
     };
     
     return (

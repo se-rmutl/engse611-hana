@@ -44,7 +44,7 @@ export const products = [
         name: 'iPhone 15 Pro',
         category: 'electronics',
         price: 45900,
-        image: 'https://via.placeholder.com/300x300/007bff/ffffff?text=iPhone+15',
+        image: 'https://placehold.co/300x300/007bff/ffffff?text=iPhone+15',
         description: 'สมาร์ทโฟนล่าสุดจาก Apple',
         inStock: true,
         rating: 4.8
@@ -54,7 +54,7 @@ export const products = [
         name: 'เสื้อยืดผ้าฝ้าย',
         category: 'clothing',
         price: 299,
-        image: 'https://via.placeholder.com/300x300/ffc107/000000?text=T-Shirt',
+        image: 'https://placehold.co/300x300/ffc107/000000?text=T-Shirt',
         description: 'เสื้อยืดผ้าฝ้าย 100% นุ่มสบาย',
         inStock: true,
         rating: 4.2
@@ -64,7 +64,7 @@ export const products = [
         name: 'หนังสือ React.js Guide',
         category: 'books',
         price: 650,
-        image: 'https://via.placeholder.com/300x300/17a2b8/ffffff?text=React+Book',
+        image: 'https://placehold.co/300x300/17a2b8/ffffff?text=React+Book',
         description: 'คู่มือเรียนรู้ React.js ฉบับสมบูรณ์',
         inStock: false,
         rating: 4.7
@@ -197,7 +197,7 @@ function ProductCard({ product, onAddToCart, onViewDetails }) {
                     src={product.image} 
                     alt={product.name}
                     onError={(e) => {
-                        e.target.src = 'https://via.placeholder.com/300x300/cccccc/666666?text=No+Image';
+                        e.target.src = 'https://placehold.co/300x300/cccccc/666666?text=No+Image';
                     }}
                 />
             </div>
