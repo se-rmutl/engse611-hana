@@ -3,13 +3,17 @@ import { useState, useEffect } from 'react';
 function SearchBar({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState('');
 
+  // Debounce: รอ 500ms หลังจากพิมพ์ค่อยค้นหา
   useEffect(() => {
     const timer = setTimeout(() => {
-      onSearch(searchTerm);
+      if (searchTerm !== undefined) {
+        onSearch(searchTerm);
+      }
     }, 500);
     
+    // Cleanup: ยกเลิก timer ก่อนหน้าถ้าพิมพ์ต่อ
     return () => clearTimeout(timer);
-  }, [searchTerm]); // ✅ ลบ onSearch ออก
+  }, [searchTerm, onSearch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -18,6 +22,7 @@ function SearchBar({ onSearch }) {
 
   const handleClear = () => {
     setSearchTerm('');
+    onSearch('');
   };
 
   return (
