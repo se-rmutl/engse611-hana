@@ -15,21 +15,21 @@ function RestaurantList({ onSelectRestaurant }) {
     priceRange: ''
   });
 
+  // เรียก API ทุกครั้งที่ filters เปลี่ยน
   useEffect(() => {
     fetchRestaurants();
-  }, [filters]); // เรียกใหม่เมื่อ filters เปลี่ยน
+  }, [filters]);
 
   const fetchRestaurants = async () => {
     try {
-      setLoading(true);
+      setLoading(false);
       setError(null);
       
-      // TODO: เรียก API ด้วย getRestaurants(filters)
-      // const result = await getRestaurants(filters);
-      // setRestaurants(result.data);
+      const result = await getRestaurants(filters);
+      setRestaurants(result.data);
       
     } catch (err) {
-      setError('ไม่สามารถโหลดข้อมูลได้ กรุณาลองใหม่');
+      setError('ไม่สามารถโหลดข้อมูลได้ กรุณาลองใหม่อีกครั้ง');
       console.error(err);
     } finally {
       setLoading(false);

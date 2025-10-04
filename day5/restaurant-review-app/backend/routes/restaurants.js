@@ -7,32 +7,35 @@ router.get('/', async (req, res) => {
   try {
     let restaurants = await readJsonFile('restaurants.json');
     const { search, category, minRating, priceRange } = req.query;
-    
+
     // TODO: ทำ filtering ตาม query parameters
-    
+
+    console.log(`search: ${search}`);
+   // console.log(`search: ${category}`);
+
     // 1. กรองตามชื่อ (search)
     if (search) {
-      restaurants = restaurants.filter(r => 
+      restaurants = restaurants.filter(r =>
         r.name.toLowerCase().includes(search.toLowerCase()) ||
         r.description.toLowerCase().includes(search.toLowerCase())
       );
     }
-    
+
     // 2. กรองตามหมวดหมู่ (category)
     if (category) {
       restaurants = restaurants.filter(r => r.category === category);
     }
-    
+
     // 3. กรองตาม rating ขั้นต่ำ (minRating)
     if (minRating) {
       restaurants = restaurants.filter(r => r.averageRating >= parseFloat(minRating));
     }
-    
+
     // 4. กรองตามช่วงราคา (priceRange)
     if (priceRange) {
       restaurants = restaurants.filter(r => r.priceRange === parseInt(priceRange));
     }
-    
+
     res.json({
       success: true,
       data: restaurants,
@@ -56,14 +59,14 @@ router.get('/', async (req, res) => {
 router.get('/:id', async (req, res) => {
   try {
     const { id } = req.params;
-    
+
     // ขั้นตอนที่ 1: อ่านข้อมูลร้านและรีวิว
     const restaurants = await readJsonFile('restaurants.json');
     const reviews = await readJsonFile('reviews.json');
-    
+
     // ขั้นตอนที่ 2: หาร้านที่ต้องการ
     const restaurant = restaurants.find(r => r.id === parseInt(id));
-    
+
     // ขั้นตอนที่ 3: ถ้าไม่เจอ ส่ง 404
     if (!restaurant) {
       return res.status(404).json({
@@ -71,12 +74,12 @@ router.get('/:id', async (req, res) => {
         message: 'ไม่พบร้านอาหารนี้'
       });
     }
-    
+
     // ขั้นตอนที่ 4: หารีวิวของร้านนี้
     const restaurantReviews = reviews
       .filter(r => r.restaurantId === parseInt(id))
       .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)); // เรียงจากใหม่สุด
-    
+
     // ขั้นตอนที่ 5: ส่งข้อมูลกลับ
     res.json({
       success: true,
@@ -99,10 +102,10 @@ router.get('/category/:category', async (req, res) => {
   try {
     const { category } = req.params;
     const restaurants = await readJsonFile('restaurants.json');
-    
+
     // TODO: กรองร้านตามหมวดหมู่
     const filteredRestaurants = restaurants.filter(r => r.category === category);
-    
+
     res.json({
       success: true,
       data: filteredRestaurants,
@@ -121,12 +124,12 @@ router.get('/category/:category', async (req, res) => {
 router.get('/random', async (req, res) => {
   try {
     const restaurants = await readJsonFile('restaurants.json');
-    
+
     // TODO: สุ่มร้าน
     // ใช้ Math.random() และ Math.floor()
     const randomIndex = Math.floor(Math.random() * restaurants.length);
     const randomRestaurant = restaurants[randomIndex];
-    
+
     res.json({
       success: true,
       data: randomRestaurant

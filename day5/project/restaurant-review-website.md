@@ -1602,21 +1602,21 @@ function RestaurantList({ onSelectRestaurant }) {
     priceRange: ''
   });
 
+  // เรียก API ทุกครั้งที่ filters เปลี่ยน
   useEffect(() => {
     fetchRestaurants();
-  }, [filters]); // เรียกใหม่เมื่อ filters เปลี่ยน
+  }, [filters]);
 
   const fetchRestaurants = async () => {
     try {
-      setLoading(true);
+      setLoading(false);
       setError(null);
       
-      // TODO: เรียก API ด้วย getRestaurants(filters)
-      // const result = await getRestaurants(filters);
-      // setRestaurants(result.data);
+      const result = await getRestaurants(filters);
+      setRestaurants(result.data);
       
     } catch (err) {
-      setError('ไม่สามารถโหลดข้อมูลได้ กรุณาลองใหม่');
+      setError('ไม่สามารถโหลดข้อมูลได้ กรุณาลองใหม่อีกครั้ง');
       console.error(err);
     } finally {
       setLoading(false);
@@ -1667,26 +1667,20 @@ import { useState, useEffect } from 'react';
 function SearchBar({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState('');
 
-  // **Debounce Implementation - ป้องกันการเรียก API บ่อยเกินไป**
-  // Concept: รอให้ผู้ใช้พิมพ์เสร็จก่อน ค่อยค่อยค้นหา
+  // Debounce: รอ 500ms หลังจากพิมพ์ค่อยค้นหา
   useEffect(() => {
-    // ตั้ง timer รอ 500ms หลังจากผู้ใช้พิมพ์
     const timer = setTimeout(() => {
-      // ถ้าผู้ใช้ไม่พิมพ์อะไรใน 500ms แล้ว ค่อยเรียก onSearch
       if (searchTerm !== undefined) {
         onSearch(searchTerm);
       }
-    }, 500); // รอ 500 milliseconds (0.5 วินาที)
+    }, 500);
     
-    // Cleanup function - ยกเลิก timer เก่าถ้าผู้ใช้พิมพ์ต่อ
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [searchTerm, onSearch]); // รันใหม่ทุกครั้งที่ searchTerm เปลี่ยน
+    // Cleanup: ยกเลิก timer ก่อนหน้าถ้าพิมพ์ต่อ
+    return () => clearTimeout(timer);
+  }, [searchTerm, onSearch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // เรียก search ทันทีเมื่อกด Enter หรือคลิกปุ่มค้นหา
     onSearch(searchTerm);
   };
 
@@ -1725,7 +1719,6 @@ function SearchBar({ onSearch }) {
 
 export default SearchBar;
 ```
-
 
 #### **frontend/src/components/FilterPanel.jsx** (ให้ 50% - เติม 50%)
 

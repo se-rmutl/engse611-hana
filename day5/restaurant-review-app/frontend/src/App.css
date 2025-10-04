@@ -59,6 +59,10 @@ body {
   border-radius: 8px;
   font-size: 1rem;
   transition: all 0.3s ease;
+    /* ป้องกัน input ถูก unmount */
+  visibility: visible !important;
+  opacity: 1 !important;
+  display: block !important;
 }
 
 .search-input-wrapper {
@@ -431,6 +435,13 @@ body {
   text-align: center;
   padding: 3rem;
   font-size: 1.2rem;
+  color: #666;
+}
+
+/* แสดง loading overlay แทน */
+.loading {
+  padding: 2rem;
+  text-align: center;
   color: #666;
 }
 

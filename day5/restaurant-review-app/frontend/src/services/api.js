@@ -10,6 +10,10 @@ export const getRestaurants = async (filters = {}) => {
     // สร้าง query string จาก filters
     const queryParams = new URLSearchParams();
     
+    //console.log(`JSON api-filters: ${JSON.stringify(filters)}`);
+
+    console.log(`api-filters: ${filters.search}`);
+
     if (filters.search) {
       queryParams.append('search', filters.search);
     }
