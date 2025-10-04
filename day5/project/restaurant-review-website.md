@@ -1582,7 +1582,7 @@ export const getRandomRestaurant = async () => {
 };
 ```
 
-#### **frontend/src/components/RestaurantList.jsx** (ให้ 50% - เติม 50%)
+#### **frontend/src/components/RestaurantList.jsx** (ให้ 100%)
 
 ```javascript
 import { useState, useEffect, useCallback } from 'react';
@@ -1604,7 +1604,7 @@ function RestaurantList({ onSelectRestaurant }) {
 
   useEffect(() => {
     fetchRestaurants();
-  }, [filters]);
+  }, [filters]); // เรียกใหม่เมื่อ filters เปลี่ยน
 
   const fetchRestaurants = async () => {
     try {
@@ -1668,7 +1668,7 @@ function RestaurantList({ onSelectRestaurant }) {
 export default RestaurantList;
 ```
 
-#### **frontend/src/components/SearchBar.jsx** (เพิ่ม debounce - ให้ 80% - เติม 20%)
+#### **frontend/src/components/SearchBar.jsx** (เพิ่ม debounce - ให้ 100%)
 
 ```javascript
 import { useState, useEffect } from 'react';
@@ -1676,16 +1676,24 @@ import { useState, useEffect } from 'react';
 function SearchBar({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState('');
 
+  // **Debounce Implementation - ป้องกันการเรียก API บ่อยเกินไป**
+  // Concept: รอให้ผู้ใช้พิมพ์เสร็จก่อน ค่อยค่อยค้นหา
   useEffect(() => {
+    // ตั้ง timer รอ 500ms หลังจากผู้ใช้พิมพ์
     const timer = setTimeout(() => {
-      onSearch(searchTerm);
-    }, 500);
+      // ถ้าผู้ใช้ไม่พิมพ์อะไรใน 500ms แล้ว ค่อยเรียก onSearch
+      if (searchTerm !== undefined) {
+        onSearch(searchTerm);
+      }
+    }, 500); // รอ 500 milliseconds (0.5 วินาที)
     
+    // Cleanup function - ยกเลิก timer เก่าถ้าผู้ใช้พิมพ์ต่อ
     return () => clearTimeout(timer);
-  }, [searchTerm]); // ✅ ลบ onSearch ออก
+  }, [searchTerm]); // รันใหม่ทุกครั้งที่ searchTerm เปลี่ยน
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // เรียก search ทันทีเมื่อกด Enter หรือคลิกปุ่มค้นหา
     onSearch(searchTerm);
   };
 

@@ -3,16 +3,24 @@ import { useState, useEffect } from 'react';
 function SearchBar({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState('');
 
+  // **Debounce Implementation - ป้องกันการเรียก API บ่อยเกินไป**
+  // Concept: รอให้ผู้ใช้พิมพ์เสร็จก่อน ค่อยค่อยค้นหา
   useEffect(() => {
+    // ตั้ง timer รอ 500ms หลังจากผู้ใช้พิมพ์
     const timer = setTimeout(() => {
-      onSearch(searchTerm);
-    }, 500);
+      // ถ้าผู้ใช้ไม่พิมพ์อะไรใน 500ms แล้ว ค่อยเรียก onSearch
+      if (searchTerm !== undefined) {
+        onSearch(searchTerm);
+      }
+    }, 500); // รอ 500 milliseconds (0.5 วินาที)
     
+    // Cleanup function - ยกเลิก timer เก่าถ้าผู้ใช้พิมพ์ต่อ
     return () => clearTimeout(timer);
   }, [searchTerm]); // ✅ ลบ onSearch ออก
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // เรียก search ทันทีเมื่อกด Enter หรือคลิกปุ่มค้นหา
     onSearch(searchTerm);
   };
 
