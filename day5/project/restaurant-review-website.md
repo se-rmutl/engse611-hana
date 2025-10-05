@@ -1622,7 +1622,7 @@ export const addReview = async (reviewData) => {
 
 ---
 
-#### 📄 `frontend/src/components/SearchBar.jsx` (ให้โครงสร้าง 50%)
+#### 📄 `frontend/src/components/SearchBar.jsx` (ให้โครงสร้าง 100%)
 
 ```javascript
 import { useState, useEffect } from 'react';
@@ -1631,7 +1631,7 @@ function SearchBar({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState('');
 
   // ========================================
-  // TODO 1: เพิ่ม debounce effect
+  // อธิบาย: debounce effect
   // ========================================
   // เป้าหมาย: รอให้ผู้ใช้พิมพ์เสร็จก่อน ค่อยค่อย search (ประหยัด API calls)
   //
@@ -1650,6 +1650,17 @@ function SearchBar({ onSearch }) {
   //   
   //   return () => clearTimeout(timer);
   // }, [searchTerm, onSearch]);
+
+  // Debounce effect
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      if (searchTerm !== undefined) {
+        onSearch(searchTerm);
+      }
+    }, 500);
+    
+    return () => clearTimeout(timer);
+  }, [searchTerm, onSearch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -1783,7 +1794,7 @@ export default FilterPanel;
 
 ---
 
-#### 📄 `frontend/src/components/RestaurantList.jsx` (ให้โครงสร้าง 40%)
+#### 📄 `frontend/src/components/RestaurantList.jsx` (ให้โครงสร้าง 100%)
 
 ```javascript
 import { useState, useEffect } from 'react';
@@ -1803,23 +1814,21 @@ function RestaurantList({ onSelectRestaurant }) {
     priceRange: ''
   });
 
-  // ========================================
-  // TODO 1: เพิ่ม useEffect เพื่อ fetch ข้อมูลเมื่อ filters เปลี่ยน
-  // ========================================
-  // useEffect(() => {
-  //   fetchRestaurants();
-  // }, [filters]);
+  // 1. useEffect เพื่อ fetch ข้อมูลเมื่อ filters เปลี่ยน
+  useEffect(() => {
+    fetchRestaurants();
+  }, [filters]);
 
   const fetchRestaurants = async () => {
     try {
       setLoading(true);
       setError(null);
       
-      // TODO 2: เรียก getRestaurants พร้อม filters
-      // const result = await getRestaurants(filters);
+      // 2. เรียก getRestaurants พร้อม filters
+      const result = await getRestaurants(filters);
       
-      // TODO 3: ตั้งค่า state
-      // setRestaurants(result.data);
+      // 3. ตั้งค่า state
+      setRestaurants(result.data);
       
     } catch (err) {
       setError('ไม่สามารถโหลดข้อมูลได้ กรุณาลองใหม่อีกครั้ง');
@@ -1829,20 +1838,14 @@ function RestaurantList({ onSelectRestaurant }) {
     }
   };
 
-  // ========================================
-  // TODO 4: เขียน handleSearch
-  // ========================================
+  // 4. handleSearch
   const handleSearch = (searchTerm) => {
-    // อัพเดท filters.search
-    // คำใบ้: setFilters(prev => ({ ...prev, search: searchTerm }));
+    setFilters(prev => ({ ...prev, search: searchTerm }));
   };
 
-  // ========================================
-  // TODO 5: เขียน handleFilterChange
-  // ========================================
+  // 5. handleFilterChange
   const handleFilterChange = (newFilters) => {
-    // อัพเดท filters
-    // คำใบ้: setFilters(prev => ({ ...prev, ...newFilters }));
+    setFilters(prev => ({ ...prev, ...newFilters }));
   };
 
   return (
