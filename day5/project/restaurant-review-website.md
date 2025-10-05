@@ -79,10 +79,10 @@ restaurant-review-app/
 └── frontend/
     ├── src/
     │   ├── components/
-    │   │   ├── RestaurantList.jsx     [ให้โครงสร้าง 40%]
+    │   │   ├── RestaurantList.jsx     [ให้ครบ 100%]
     │   │   ├── RestaurantCard.jsx     [ให้ครบ 100%]
     │   │   ├── RestaurantDetail.jsx   [ให้โครงสร้าง 30%]
-    │   │   ├── SearchBar.jsx          [ให้โครงสร้าง 50%]
+    │   │   ├── SearchBar.jsx          [ให้ครบ 100%]
     │   │   ├── FilterPanel.jsx        [ให้โครงสร้าง 40%]
     │   │   ├── ReviewForm.jsx         [ให้โครงสร้าง 40%]
     │   │   └── ReviewList.jsx         [ให้ครบ 100%]
@@ -1622,7 +1622,7 @@ export const addReview = async (reviewData) => {
 
 ---
 
-#### 📄 `frontend/src/components/SearchBar.jsx` (ให้โครงสร้าง 100%)
+#### 📄 `frontend/src/components/SearchBar.jsx` (ให้ครบ 100%)
 
 ```javascript
 import { useState, useEffect } from 'react';
@@ -1794,7 +1794,7 @@ export default FilterPanel;
 
 ---
 
-#### 📄 `frontend/src/components/RestaurantList.jsx` (ให้โครงสร้าง 100%)
+#### 📄 `frontend/src/components/RestaurantList.jsx` (ให้ครบ 100%)
 
 ```javascript
 import { useState, useEffect } from 'react';
