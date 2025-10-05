@@ -852,11 +852,11 @@ curl http://localhost:3000/api/stats
 
 สร้าง Collection ชื่อ "Restaurant Review API" และเพิ่ม requests ต่อไปนี้:
 
-**GET** `http://localhost:3000/api/restaurants`
-**GET** `http://localhost:3000/api/restaurants/1`
-**GET** `http://localhost:3000/api/restaurants?search=ส้มตำ&category=อาหารไทย`
-**POST** `http://localhost:3000/api/reviews` (พร้อม JSON body)
-**GET** `http://localhost:3000/api/stats`
+**GET** `http://localhost:3000/api/restaurants` <br>
+**GET** `http://localhost:3000/api/restaurants/1` <br>
+**GET** `http://localhost:3000/api/restaurants?search=ส้มตำ&category=อาหารไทย` <br>
+**POST** `http://localhost:3000/api/reviews` (พร้อม JSON body) <br>
+**GET** `http://localhost:3000/api/stats` <br>
 
 ---
 
